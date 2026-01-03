@@ -1,0 +1,5 @@
+{
+  "name": "CoolCalc Pro",
+  "description": "A professional-grade cooling capacity calculator using ASHRAE standards to determine optimal HVAC requirements in kW, BTU/h, and HP, featuring bilingual support and AI-driven environment analysis.",
+  "requestFramePermissions": []
+}
