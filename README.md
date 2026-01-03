@@ -37,6 +37,15 @@
 
 本專案已設定 GitHub Actions。當代碼推送到 `main` 分支時，會自動觸發部署至 GitHub Pages。
 
+### 首次部署設定 (重要)
+
+由於使用了 GitHub Actions 進行部署，您需要手動在 GitHub 儲存庫中開啟權限：
+
+1. 進入 GitHub Repository 的 **Settings**。
+2. 點擊左側選單的 **Pages**。
+3. 在 **Build and deployment** > **Source** 下方，將選項從 `Deploy from a branch` 改為 **`GitHub Actions`**。
+4. (選填) 如果您使用的是多層目錄或自定義域名，請在該頁面進行相應設定。
+
 ### 設定密鑰
 
 請在 GitHub Repository 的 Settings > Secrets and variables > Actions 中新增以下密鑰：
@@ -51,4 +60,4 @@
 
 ## 授權
 
-MIT License
+MIT License 
