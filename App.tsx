@@ -19,7 +19,7 @@ const App: React.FC = () => {
 
   const calculate = useCallback(() => {
     const baseLoad = ASHRAE_FACTORS[roomType];
-    
+
     // Calculate total multiplier from checkboxes
     let totalMultiplier = 1;
     if (factors.highSunExposure) totalMultiplier += ADJUSTMENT_PERCENTAGES.highSunExposure;
@@ -61,38 +61,27 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 pb-12">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="bg-blue-600 p-2 rounded-lg">
-              <i className="fas fa-snowflake text-white text-xl"></i>
-            </div>
-            <div>
-              <h1 className="text-xl font-bold tracking-tight text-slate-800">{t.title}</h1>
-              <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">{t.subtitle}</p>
-            </div>
-          </div>
-          <button 
-            onClick={() => setLang(lang === Language.EN ? Language.FR : Language.EN)}
-            className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 hover:bg-slate-50 transition-colors text-sm font-semibold text-slate-600"
-          >
-            <i className="fas fa-globe"></i>
-            {lang === Language.EN ? 'FR' : 'EN'}
-          </button>
-        </div>
-      </header>
+
 
       <main className="max-w-5xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+
           {/* Input Section */}
           <div className="lg:col-span-12 space-y-6">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-              <h2 className="text-lg font-bold mb-6 flex items-center gap-2">
-                <i className="fas fa-sliders-h text-blue-500"></i>
-                {lang === Language.EN ? 'Configuration' : 'Configuration'}
-              </h2>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-lg font-bold flex items-center gap-2">
+                  <i className="fas fa-sliders-h text-blue-500"></i>
+                  {lang === Language.EN ? 'Configuration' : 'Configuration'}
+                </h2>
+                <button
+                  onClick={() => setLang(lang === Language.EN ? Language.FR : Language.EN)}
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 hover:bg-slate-50 transition-colors text-xs font-bold text-slate-600 shadow-sm"
+                >
+                  <i className="fas fa-globe text-blue-500"></i>
+                  {lang === Language.EN ? 'FR' : 'EN'}
+                </button>
+              </div>
 
               <div className="space-y-8">
                 {/* Area Input Group with Slider */}
@@ -103,7 +92,7 @@ const App: React.FC = () => {
                   <div className="flex flex-col sm:flex-row items-center gap-6">
                     {/* Number Input Box - Small Width */}
                     <div className="relative w-full sm:w-[160px]">
-                      <input 
+                      <input
                         type="number"
                         value={area}
                         step="0.1"
@@ -116,7 +105,7 @@ const App: React.FC = () => {
                     {/* Quick Input Slider */}
                     <div className="flex-1 w-full flex items-center gap-4 bg-slate-50 p-4 rounded-xl border border-slate-100">
                       <span className="text-[10px] font-bold text-slate-400 w-8">2m²</span>
-                      <input 
+                      <input
                         type="range"
                         min="2"
                         max="1000"
@@ -141,19 +130,17 @@ const App: React.FC = () => {
                         <button
                           key={type}
                           onClick={() => setRoomType(type)}
-                          className={`px-3 py-3 rounded-xl text-xs font-bold border transition-all flex flex-col items-center gap-2 ${
-                            roomType === type 
-                            ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-100' 
-                            : 'bg-white border-slate-200 text-slate-600 hover:border-blue-300'
-                          }`}
+                          className={`px-3 py-3 rounded-xl text-xs font-bold border transition-all flex flex-col items-center gap-2 ${roomType === type
+                              ? 'bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-100'
+                              : 'bg-white border-slate-200 text-slate-600 hover:border-blue-300'
+                            }`}
                         >
-                          <i className={`fas ${
-                            type === RoomType.BEDROOM ? 'fa-bed' :
-                            type === RoomType.LIVING_ROOM ? 'fa-couch' :
-                            type === RoomType.KITCHEN ? 'fa-utensils' :
-                            type === RoomType.OFFICE ? 'fa-briefcase' :
-                            type === RoomType.SERVER_ROOM ? 'fa-server' : 'fa-dumbbell'
-                          }`}></i>
+                          <i className={`fas ${type === RoomType.BEDROOM ? 'fa-bed' :
+                              type === RoomType.LIVING_ROOM ? 'fa-couch' :
+                                type === RoomType.KITCHEN ? 'fa-utensils' :
+                                  type === RoomType.OFFICE ? 'fa-briefcase' :
+                                    type === RoomType.SERVER_ROOM ? 'fa-server' : 'fa-dumbbell'
+                            }`}></i>
                           {t.roomTypes[type]}
                         </button>
                       ))}
@@ -167,8 +154,8 @@ const App: React.FC = () => {
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       <label className="flex items-center p-3 rounded-xl border border-slate-100 hover:bg-slate-50 cursor-pointer transition-colors group">
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           checked={factors.highSunExposure}
                           onChange={() => toggleFactor('highSunExposure')}
                           className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
@@ -176,8 +163,8 @@ const App: React.FC = () => {
                         <span className="ml-3 text-sm text-slate-600 font-medium group-hover:text-slate-900">{t.factors.highSun}</span>
                       </label>
                       <label className="flex items-center p-3 rounded-xl border border-slate-100 hover:bg-slate-50 cursor-pointer transition-colors group">
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           checked={factors.poorInsulation}
                           onChange={() => toggleFactor('poorInsulation')}
                           className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
@@ -185,8 +172,8 @@ const App: React.FC = () => {
                         <span className="ml-3 text-sm text-slate-600 font-medium group-hover:text-slate-900">{t.factors.poorInsulation}</span>
                       </label>
                       <label className="flex items-center p-3 rounded-xl border border-slate-100 hover:bg-slate-50 cursor-pointer transition-colors group">
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           checked={factors.extraOccupants}
                           onChange={() => toggleFactor('extraOccupants')}
                           className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
@@ -194,8 +181,8 @@ const App: React.FC = () => {
                         <span className="ml-3 text-sm text-slate-600 font-medium group-hover:text-slate-900">{t.factors.extraOccupants}</span>
                       </label>
                       <label className="flex items-center p-3 rounded-xl border border-slate-100 hover:bg-slate-50 cursor-pointer transition-colors group">
-                        <input 
-                          type="checkbox" 
+                        <input
+                          type="checkbox"
                           checked={factors.highElectronicLoad}
                           onChange={() => toggleFactor('highElectronicLoad')}
                           className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
@@ -248,7 +235,7 @@ const App: React.FC = () => {
                       <div>
                         <p className="font-bold">{lang === Language.EN ? 'Capacity Adjustment Applied' : 'Ajustement de Capacité Appliqué'}</p>
                         <p className="opacity-80">
-                          {lang === Language.EN 
+                          {lang === Language.EN
                             ? `We've increased the base requirement by ${Math.round((result.adjustmentMultiplier - 1) * 100)}% to account for your selected environmental factors.`
                             : `Nous avons augmenté le besoin de base de ${Math.round((result.adjustmentMultiplier - 1) * 100)}% pour tenir compte des facteurs environnementaux sélectionnés.`
                           }
@@ -276,7 +263,7 @@ const App: React.FC = () => {
                   ))}
                 </div>
                 <div className="mt-6 pt-6 border-t border-white/10">
-                   <p className="text-[10px] text-white/50 leading-relaxed italic">
+                  <p className="text-[10px] text-white/50 leading-relaxed italic">
                     <i className="fas fa-info-circle mr-1"></i>
                     {t.disclaimer}
                   </p>
