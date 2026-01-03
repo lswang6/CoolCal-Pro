@@ -20,6 +20,16 @@ export interface EnvironmentalFactors {
   highElectronicLoad: boolean;
 }
 
+export interface RoomRecord {
+  id: string;
+  roomName: string;
+  area: number;
+  kw: number;
+  btu: number;
+  hp: number;
+  roomType: RoomType;
+}
+
 export interface CalculationResult {
   watts: number;
   kw: number;
@@ -51,4 +61,10 @@ export interface Translation {
     electronics: string;
   };
   roomTypes: Record<RoomType, string>;
+  confirmBtn: string;
+  recordsTitle: string;
+  exportBtn: string;
+  clearAllBtn: string;
+  noRecords: string;
+  roomNamePrefix: string;
 }

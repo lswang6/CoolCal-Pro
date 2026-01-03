@@ -48,7 +48,13 @@ export const TRANSLATIONS: Record<Language, Translation> = {
       [RoomType.OFFICE]: 'Office / Workspace',
       [RoomType.SERVER_ROOM]: 'Server / Tech Room',
       [RoomType.GYM]: 'Gym / Fitness Area'
-    }
+    },
+    confirmBtn: 'Confirm & Add',
+    recordsTitle: 'Cooling Capacity Records',
+    exportBtn: 'Export to CSV',
+    clearAllBtn: 'Clear All',
+    noRecords: 'No records yet',
+    roomNamePrefix: 'Room'
   },
   [Language.FR]: {
     title: 'CoolCalc Pro',
@@ -56,26 +62,32 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     areaLabel: 'Surface à refroidir (m²)',
     roomTypeLabel: 'Type de pièce',
     calculateBtn: 'Calculer la capacité',
-    resultsTitle: 'Capacité Recommandée',
+    resultsTitle: 'Estimation de Capacité',
     kwLabel: 'Kilowatts (kW)',
     btuLabel: 'BTU par heure (BTU/h)',
     hpLabel: 'Chevaux (HP)',
-    m2Label: 'Mètres Carrés',
-    disclaimer: 'Les calculs sont basés sur les facteurs de charge standard ASHRAE. Les ajustements sont appliqués de manière additive.',
+    m2Label: 'm²',
+    disclaimer: 'Calculé selon les facteurs de charge standard ASHRAE. Les ajustements sont appliqués de manière additive.',
     factorsTitle: 'Facteurs Environnementaux (Optionnel)',
     factors: {
       highSun: 'Exposition Solaire Élevée (Sud/Grandes fenêtres)',
       poorInsulation: 'Isolation Faible (Vieux bâtiment/Murs fins)',
-      extraOccupants: 'Occupation Élevée (>2 personnes)',
-      electronics: 'Beaucoup d\'Électronique (Sources de chaleur)'
+      extraOccupants: 'Occupation Élevée (>2 personnes régulièrement)',
+      electronics: 'Nombreux Électronique (Sources de chaleur)'
     },
     roomTypes: {
-      [RoomType.BEDROOM]: 'Chambre / Zone de repos',
+      [RoomType.BEDROOM]: 'Chambre / Repos',
       [RoomType.LIVING_ROOM]: 'Salon / Séjour',
-      [RoomType.KITCHEN]: 'Cuisine / Salle à manger',
-      [RoomType.OFFICE]: 'Bureau / Espace de travail',
-      [RoomType.SERVER_ROOM]: 'Serveur / Local technique',
-      [RoomType.GYM]: 'Gymnase / Fitness'
-    }
+      [RoomType.KITCHEN]: 'Cuisine / Repas',
+      [RoomType.OFFICE]: 'Bureau / Travail',
+      [RoomType.SERVER_ROOM]: 'Serveur / Tech',
+      [RoomType.GYM]: 'Gym / Fitness'
+    },
+    confirmBtn: 'Confirmer & Ajouter',
+    recordsTitle: 'Registres de Capacité de Refroidissement',
+    exportBtn: 'Exporter en CSV',
+    clearAllBtn: 'Tout Effacer',
+    noRecords: 'Aucun registre pour le moment',
+    roomNamePrefix: 'Pièce'
   }
 };
