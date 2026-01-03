@@ -16,7 +16,7 @@ CoolCal Pro is an ASHRAE standard cooling load estimation tool designed for HVAC
 - **ASHRAE Standards**: Built-in cooling load factors for various room types.
 - **Environmental Adjustments**: Accounts for sun exposure, insulation quality, occupancy, and electronic loads.
 - **Multi-unit Output**: Simultaneous display of results in kW, BTU, and HP.
-- **AI-Assisted Analysis**: Integrated Google Gemini for professional recommendations (Under Development).
+
 
 ### Development Guide
 
@@ -53,17 +53,14 @@ As this project uses GitHub Actions for deployment, you must enable the correct 
 2. Click **Pages** in the left sidebar.
 3. Under **Build and deployment** > **Source**, change the selection from `Deploy from a branch` to **`GitHub Actions`**.
 
-#### Configuration
 
-Add the following secret in Settings > Secrets and variables > Actions:
-- `GEMINI_API_KEY`: Your Google Gemini API Key for AI features.
 
 ### Tech Stack
 
 - **Core**: React 19, TypeScript
 - **Tooling**: Vite
 - **Styling**: Tailwind CSS
-- **AI**: @google/genai (Gemini SDK)
+
 
 ### License
 
@@ -83,7 +80,7 @@ MIT License
 - **ASHRAE 標準**: 內建各種空間類型的基準負載係數。
 - **環境因素調整**: 考慮日照、隔熱、人員及電子設備負載。
 - **多單位輸出**: 同時顯示 kW, BTU, HP 計算結果。
-- **AI 輔助分析**: 整合 Google Gemini 提供專業建議 (開發中)。
+
 
 ### 開發指南
 
@@ -120,17 +117,14 @@ MIT License
 2. 點擊左側選單的 **Pages**。
 3. 在 **Build and deployment** > **Source** 下方，將選項從 `Deploy from a branch` 改為 **`GitHub Actions`**。
 
-#### 設定密鑰
 
-請在 GitHub Repository 的 Settings > Secrets and variables > Actions 中新增以下密鑰：
-- `GEMINI_API_KEY`: 用於 AI 分析功能的 Google Gemini API Key。
 
 ### 技術棧
 
 - **Core**: React 19, TypeScript
 - **Tooling**: Vite
 - **Styling**: Tailwind CSS
-- **AI**: @google/genai (Gemini SDK)
+
 
 ### 授權
 
