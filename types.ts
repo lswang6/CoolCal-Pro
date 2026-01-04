@@ -39,6 +39,7 @@ export interface CalculationResult {
   roomType: RoomType;
   baseLoad: number;
   adjustmentMultiplier: number;
+  isTropical: boolean;
 }
 
 export interface Translation {
@@ -67,4 +68,5 @@ export interface Translation {
   clearAllBtn: string;
   noRecords: string;
   roomNamePrefix: string;
+  tropicalAreaLabel: string;
 }

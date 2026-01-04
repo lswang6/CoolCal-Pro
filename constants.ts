@@ -3,11 +3,11 @@ import { Language, RoomType, Translation } from './types';
 
 export const ASHRAE_FACTORS: Record<RoomType, number> = {
   [RoomType.BEDROOM]: 100, // W/m2
-  [RoomType.LIVING_ROOM]: 120,
-  [RoomType.KITCHEN]: 180,
-  [RoomType.OFFICE]: 140,
+  [RoomType.LIVING_ROOM]: 160,
+  [RoomType.KITCHEN]: 200,
+  [RoomType.OFFICE]: 180,
   [RoomType.SERVER_ROOM]: 350,
-  [RoomType.GYM]: 220,
+  [RoomType.GYM]: 250,
 };
 
 // Adjustment percentages based on typical ASHRAE/HVAC safety margins
@@ -33,7 +33,8 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     btuLabel: 'BTU per Hour (BTU/h)',
     hpLabel: 'Horsepower (HP)',
     m2Label: 'Square Meters',
-    disclaimer: 'Calculations are based on ASHRAE standard load factors. Adjustments are applied additively based on environmental conditions.',
+    disclaimer: "Calculations are based on ASHRAE standard load factors. Adjustments are applied additively based on environmental conditions, and adjusted after consideration of modern building and people's actual feeling in tropical area.",
+    tropicalAreaLabel: 'Tropical Area Application (+30%)',
     factorsTitle: 'Environmental Factors (Optional)',
     factors: {
       highSun: 'High Sun Exposure (South-facing/Large windows)',
@@ -67,7 +68,8 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     btuLabel: 'BTU par heure (BTU/h)',
     hpLabel: 'Chevaux (HP)',
     m2Label: 'm²',
-    disclaimer: 'Calculé selon les facteurs de charge standard ASHRAE. Les ajustements sont appliqués de manière additive.',
+    disclaimer: "Calculé selon les facteurs de charge standard ASHRAE. Les ajustements sont appliqués de manière additive en fonction des conditions environnementales, et ajustés après considération des bâtiments modernes et du ressenti réel des personnes en zone tropicale.",
+    tropicalAreaLabel: 'Application Zone Tropicale (+30%)',
     factorsTitle: 'Facteurs Environnementaux (Optionnel)',
     factors: {
       highSun: 'Exposition Solaire Élevée (Sud/Grandes fenêtres)',

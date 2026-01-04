@@ -13,6 +13,7 @@ const App: React.FC = () => {
     extraOccupants: false,
     highElectronicLoad: false
   });
+  const [isTropical, setIsTropical] = useState<boolean>(true);
   const [result, setResult] = useState<CalculationResult | null>(null);
   const [records, setRecords] = useState<RoomRecord[]>([]);
 
@@ -28,7 +29,8 @@ const App: React.FC = () => {
     if (factors.extraOccupants) totalMultiplier += ADJUSTMENT_PERCENTAGES.extraOccupants;
     if (factors.highElectronicLoad) totalMultiplier += ADJUSTMENT_PERCENTAGES.highElectronicLoad;
 
-    const adjustedWattsPerM2 = baseLoad * totalMultiplier;
+    const tropicalMultiplier = isTropical ? 1.30 : 1;
+    const adjustedWattsPerM2 = baseLoad * totalMultiplier * tropicalMultiplier;
     const watts = area * adjustedWattsPerM2;
     const kw = watts / 1000;
     const btu = watts * CONVERSION_BTU_PER_WATT;
@@ -42,9 +44,10 @@ const App: React.FC = () => {
       area,
       roomType,
       baseLoad,
-      adjustmentMultiplier: totalMultiplier
+      adjustmentMultiplier: totalMultiplier,
+      isTropical
     });
-  }, [area, roomType, factors]);
+  }, [area, roomType, factors, isTropical]);
 
   useEffect(() => {
     calculate();
@@ -248,6 +251,27 @@ const App: React.FC = () => {
                 {t.resultsTitle}
               </h2>
 
+              <div className="mb-6 p-4 bg-blue-50/50 rounded-xl border border-blue-100 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${isTropical ? 'bg-orange-100 text-orange-600' : 'bg-blue-100 text-blue-600'}`}>
+                    <i className={`fas ${isTropical ? 'fa-sun' : 'fa-check'}`}></i>
+                  </div>
+                  <div>
+                    <span className="block text-xs font-bold text-slate-700">{t.tropicalAreaLabel}</span>
+                    <span className="text-[10px] text-slate-500 font-medium">{isTropical ? 'Applied +30% Adjustment' : 'Standard Calculation'}</span>
+                  </div>
+                </div>
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={isTropical}
+                    onChange={(e) => setIsTropical(e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
+              </div>
+
               {result && (
                 <>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
@@ -274,7 +298,15 @@ const App: React.FC = () => {
                     {t.confirmBtn} {records.length >= 20 && `(Limit 20)`}
                   </button>
 
-                  <div className="mt-auto">
+                  <div className="mt-auto space-y-2">
+                    {result.isTropical && (
+                      <div className="p-3 bg-blue-50 border border-blue-100 rounded-xl text-blue-800 text-xs flex items-start gap-2">
+                        <i className="fas fa-info-circle mt-0.5"></i>
+                        <p>
+                          Tropical area adjustment (+30%) is active.
+                        </p>
+                      </div>
+                    )}
                     {result.adjustmentMultiplier > 1 && (
                       <div className="p-3 bg-orange-50 border border-orange-100 rounded-xl text-orange-800 text-xs flex items-start gap-2">
                         <i className="fas fa-exclamation-triangle mt-0.5"></i>
