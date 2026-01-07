@@ -126,5 +126,40 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     clearAllBtn: '清空全部',
     noRecords: '暂无记录',
     roomNamePrefix: '房间'
+  },
+  [Language.AR]: {
+    title: 'CoolCalc Pro',
+    subtitle: 'حاسبة سعة التبريد وفق معايير ASHRAE',
+    areaLabel: 'مساحة التبريد (م²)',
+    roomTypeLabel: 'نوع الغرفة',
+    calculateBtn: 'حساب السعة',
+    resultsTitle: 'السعة الموصى بها',
+    kwLabel: 'كيلوواط (kW)',
+    btuLabel: 'وحدة حرارية/ساعة (BTU/h)',
+    hpLabel: 'حصان (HP)',
+    m2Label: 'متر مربع',
+    disclaimer: "تستند الحسابات إلى معايير ASHRAE. يتم تطبيق التعديلات بناءً على الظروف البيئية ومراعاة المباني الحديثة والشعور الفعلي في المناطق الاستوائية.",
+    tropicalAreaLabel: 'تطبيق المنطقة الاستوائية (+30%)',
+    factorsTitle: 'العوامل البيئية (اختياري)',
+    factors: {
+      highSun: 'تعرض عالي للشمس (جهة جنوبية/نوافذ كبيرة)',
+      poorInsulation: 'عزل ضعيف (مبنى قديم/جدران رقيقة)',
+      extraOccupants: 'إشغال عالي (أكثر من شخصين بانتظام)',
+      electronics: 'أجهزة إلكترونية كثيرة (مصادر حرارة)'
+    },
+    roomTypes: {
+      [RoomType.BEDROOM]: 'غرفة نوم / منطقة راحة',
+      [RoomType.LIVING_ROOM]: 'غرفة معيشة / صالة',
+      [RoomType.KITCHEN]: 'مطبخ / طعام',
+      [RoomType.OFFICE]: 'مكتب / مساحة عمل',
+      [RoomType.SERVER_ROOM]: 'غرفة خوادم / تقنية',
+      [RoomType.GYM]: 'صالة رياضية / لياقة'
+    },
+    confirmBtn: 'تأكيد وإضافة',
+    recordsTitle: 'سجلات سعة التبريد',
+    exportBtn: 'تصدير CSV',
+    clearAllBtn: 'مسح الكل',
+    noRecords: 'لا توجد سجلات بعد',
+    roomNamePrefix: 'غرفة'
   }
 };
