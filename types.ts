@@ -1,7 +1,8 @@
 
 export enum Language {
   EN = 'en',
-  FR = 'fr'
+  FR = 'fr',
+  ZH = 'zh'
 }
 
 export enum RoomType {

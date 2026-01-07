@@ -4,7 +4,7 @@ import { Language, RoomType, CalculationResult, EnvironmentalFactors, RoomRecord
 import { TRANSLATIONS, ASHRAE_FACTORS, CONVERSION_BTU_PER_WATT, BTU_PER_HP, ADJUSTMENT_PERCENTAGES } from './constants';
 
 const App: React.FC = () => {
-  const [lang, setLang] = useState<Language>(Language.EN);
+  const [lang, setLang] = useState<Language>(Language.ZH);
   const [area, setArea] = useState<number>(20);
   const [roomType, setRoomType] = useState<RoomType>(RoomType.BEDROOM);
   const [factors, setFactors] = useState<EnvironmentalFactors>({
@@ -126,14 +126,14 @@ const App: React.FC = () => {
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-lg font-bold flex items-center gap-2">
                 <i className="fas fa-sliders-h text-blue-500"></i>
-                {lang === Language.EN ? 'Configuration' : 'Configuration'}
+                {lang === Language.ZH ? '配置' : lang === Language.EN ? 'Configuration' : 'Configuration'}
               </h2>
               <button
-                onClick={() => setLang(lang === Language.EN ? Language.FR : Language.EN)}
+                onClick={() => setLang(lang === Language.EN ? Language.FR : lang === Language.FR ? Language.ZH : Language.EN)}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 hover:bg-slate-50 transition-colors text-xs font-bold text-slate-600 shadow-sm"
               >
                 <i className="fas fa-globe text-blue-500"></i>
-                {lang === Language.EN ? 'FR' : 'EN'}
+                {lang === Language.EN ? 'FR' : lang === Language.FR ? '中文' : 'EN'}
               </button>
             </div>
 
@@ -258,7 +258,7 @@ const App: React.FC = () => {
                   </div>
                   <div>
                     <span className="block text-xs font-bold text-slate-700">{t.tropicalAreaLabel}</span>
-                    <span className="text-[10px] text-slate-500 font-medium">{isTropical ? 'Applied +30% Adjustment' : 'Standard Calculation'}</span>
+                    <span className="text-[10px] text-slate-500 font-medium">{isTropical ? (lang === Language.ZH ? '已应用 +30% 调整' : 'Applied +30% Adjustment') : (lang === Language.ZH ? '标准计算' : 'Standard Calculation')}</span>
                   </div>
                 </div>
                 <label className="relative inline-flex items-center cursor-pointer">
@@ -303,7 +303,7 @@ const App: React.FC = () => {
                       <div className="p-3 bg-blue-50 border border-blue-100 rounded-xl text-blue-800 text-xs flex items-start gap-2">
                         <i className="fas fa-info-circle mt-0.5"></i>
                         <p>
-                          Tropical area adjustment (+30%) is active.
+                          {lang === Language.ZH ? '热带地区调整 (+30%) 已启用。' : 'Tropical area adjustment (+30%) is active.'}
                         </p>
                       </div>
                     )}
@@ -311,9 +311,11 @@ const App: React.FC = () => {
                       <div className="p-3 bg-orange-50 border border-orange-100 rounded-xl text-orange-800 text-xs flex items-start gap-2">
                         <i className="fas fa-exclamation-triangle mt-0.5"></i>
                         <p>
-                          {lang === Language.EN
-                            ? `Applied ${Math.round((result.adjustmentMultiplier - 1) * 100)}% adjustment for environmental factors.`
-                            : `Adapté de ${Math.round((result.adjustmentMultiplier - 1) * 100)}% pour les facteurs environnementaux.`
+                          {lang === Language.ZH
+                            ? `已应用 ${Math.round((result.adjustmentMultiplier - 1) * 100)}% 环境因素调整。`
+                            : lang === Language.EN
+                              ? `Applied ${Math.round((result.adjustmentMultiplier - 1) * 100)}% adjustment for environmental factors.`
+                              : `Adapté de ${Math.round((result.adjustmentMultiplier - 1) * 100)}% pour les facteurs environnementaux.`
                           }
                         </p>
                       </div>
@@ -365,8 +367,8 @@ const App: React.FC = () => {
                           <span className="text-[10px] px-1.5 py-0.5 bg-slate-200 text-slate-600 rounded uppercase font-black">{t.roomTypes[rec.roomType].split(' / ')[0]}</span>
                         </div>
                         <p className="text-xs text-slate-500 font-medium">
-                          Area: <span className="text-slate-700 font-bold">{rec.area} m²</span> |
-                          Capacity: <span className="text-blue-600 font-bold">{rec.kw.toFixed(2)} kW</span>
+                          {lang === Language.ZH ? '面积' : 'Area'}: <span className="text-slate-700 font-bold">{rec.area} m²</span> |
+                          {lang === Language.ZH ? '容量' : 'Capacity'}: <span className="text-blue-600 font-bold">{rec.kw.toFixed(2)} kW</span>
                         </p>
                       </div>
                       <button
@@ -381,9 +383,9 @@ const App: React.FC = () => {
               </div>
 
               <div className="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-[10px] font-bold text-slate-400">
-                <span>Total: {records.length} / 20</span>
+                <span>{lang === Language.ZH ? '总计' : 'Total'}: {records.length} / 20</span>
                 {records.length > 0 && (
-                  <span>Sum: {records.reduce((acc, r) => acc + r.kw, 0).toFixed(2)} kW</span>
+                  <span>{lang === Language.ZH ? '合计' : 'Sum'}: {records.reduce((acc, r) => acc + r.kw, 0).toFixed(2)} kW</span>
                 )}
               </div>
             </div>
@@ -393,7 +395,7 @@ const App: React.FC = () => {
           <div className="bg-slate-800 p-6 rounded-2xl shadow-xl text-white">
             <h3 className="text-sm font-bold mb-4 flex items-center gap-2 opacity-80">
               <i className="fas fa-book-open"></i>
-              {lang === Language.EN ? 'ASHRAE Reference Data' : 'Données de Référence ASHRAE'}
+              {lang === Language.ZH ? 'ASHRAE 参考数据' : lang === Language.EN ? 'ASHRAE Reference Data' : 'Données de Référence ASHRAE'}
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
               {(Object.keys(ASHRAE_FACTORS) as RoomType[]).map((type) => (

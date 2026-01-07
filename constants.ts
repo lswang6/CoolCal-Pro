@@ -91,5 +91,40 @@ export const TRANSLATIONS: Record<Language, Translation> = {
     clearAllBtn: 'Tout Effacer',
     noRecords: 'Aucun registre pour le moment',
     roomNamePrefix: 'Pièce'
+  },
+  [Language.ZH]: {
+    title: 'CoolCalc Pro',
+    subtitle: 'ASHRAE 标准冷负荷计算器',
+    areaLabel: '制冷面积 (m²)',
+    roomTypeLabel: '房间类型',
+    calculateBtn: '计算容量',
+    resultsTitle: '推荐容量',
+    kwLabel: '千瓦 (kW)',
+    btuLabel: '英热单位/小时 (BTU/h)',
+    hpLabel: '匹 (HP)',
+    m2Label: '平方米',
+    disclaimer: "计算基于 ASHRAE 标准负荷系数。环境调整按叠加方式应用，并根据现代建筑特性和热带地区的实际体感进行调整。",
+    tropicalAreaLabel: '热带地区应用 (+30%)',
+    factorsTitle: '环境因素（可选）',
+    factors: {
+      highSun: '高日照（朝南/大窗户）',
+      poorInsulation: '保温差（老建筑/薄墙）',
+      extraOccupants: '人员较多（经常>2人）',
+      electronics: '电器设备多（热源）'
+    },
+    roomTypes: {
+      [RoomType.BEDROOM]: '卧室 / 休息区',
+      [RoomType.LIVING_ROOM]: '客厅 / 起居室',
+      [RoomType.KITCHEN]: '厨房 / 餐厅',
+      [RoomType.OFFICE]: '办公室 / 工作区',
+      [RoomType.SERVER_ROOM]: '机房 / 设备间',
+      [RoomType.GYM]: '健身房 / 运动区'
+    },
+    confirmBtn: '确认并添加',
+    recordsTitle: '冷负荷记录',
+    exportBtn: '导出 CSV',
+    clearAllBtn: '清空全部',
+    noRecords: '暂无记录',
+    roomNamePrefix: '房间'
   }
 };
