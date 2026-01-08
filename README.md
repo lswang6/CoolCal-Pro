@@ -55,6 +55,18 @@ As this project uses GitHub Actions for deployment, you must enable the correct 
 
 
 
+### Testing
+
+Run tests with:
+```bash
+npm run test
+```
+
+For coverage report:
+```bash
+npm run test:coverage
+```
+
 ### Tech Stack
 
 - **Core**: React 19, TypeScript
@@ -118,6 +130,18 @@ MIT License
 3. 在 **Build and deployment** > **Source** 下方，將選項從 `Deploy from a branch` 改為 **`GitHub Actions`**。
 
 
+
+### 測試
+
+執行測試：
+```bash
+npm run test
+```
+
+產生覆蓋率報告：
+```bash
+npm run test:coverage
+```
 
 ### 技術棧
 
