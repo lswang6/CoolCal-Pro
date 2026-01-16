@@ -20,8 +20,8 @@ const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.DARK_MODE);
     if (saved !== null) return saved === 'true';
-    // Default to system preference
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Default to light mode
+    return false;
   });
 
   const [area, setArea] = useState<number>(20);
